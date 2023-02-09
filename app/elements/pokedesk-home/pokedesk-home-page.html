@@ -1,0 +1,78 @@
+<link rel="import" href="../../../components/cells-component-app-header/cells-component-app-header.html">
+<link rel="import" href="../../elements/pokedesk-data-manager/pokedesk-data-manager.html">
+<link rel="import" href="../../../components/cells-st-link/cells-st-link.html">
+<link rel="import" href="../../../components/cells-st-button/cells-st-button.html">
+
+
+
+<dom-module id="pokedesk-home-page">
+
+    <template>
+      <style>
+        :host {
+          display: block;
+          background-color: #fff;
+        }
+  
+        h1, p{
+          color: rgb(59, 59, 59);
+          text-align: center;
+        }
+
+        h1{
+            font-size: 4rem;
+        }
+
+        .main-list{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+  
+      </style>
+        <div class="main-list">
+          <cells-st-button>
+            <button on-click="createArray">Listar Pokemones</button>
+          </cells-st-button>
+
+          <template is="dom-repeat" items="[[propertyArray]]" as="item">
+            <h2>[[item]]</h2>
+          </template>
+        </div>
+        
+    </template>
+  
+    <script>
+      class PokedeskHomePage extends Polymer.Element {
+  
+        static get is() {
+          return 'pokedesk-home-page';
+        }
+  
+        // Declare properties for the element's public API
+        static get properties() {
+          return {
+            propertyList: {type:Object},
+            propertyArray: {type:Array, value:function(){return[]}},
+          }
+
+        }
+
+
+        createArray(){
+          let pokemons = this.propertyList.detail.results;
+          let temp = [];
+          for (let i = 0; i < pokemons.length; i++) {
+            let current = pokemons[i].name;
+            temp.push(current);
+          }
+
+          this.propertyArray = temp;
+        }
+      }
+  
+      customElements.define(PokedeskHomePage.is, PokedeskHomePage);
+    </script>
+  
+  </dom-module>

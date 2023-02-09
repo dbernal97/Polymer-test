@@ -1,0 +1,77 @@
+<link rel="import" href="../../../components/cells-generic-dp/cells-generic-dp.html">
+
+<dom-module id="pokedesk-data-manager">
+    <template>
+      <style>
+        :host {
+          display: block;
+        }
+      </style>
+  
+
+  <cells-generic-dp
+    id="myDataProvider"
+    host="https://pokeapi.co/api/v2/pokemon/"
+    path=""
+    params=''
+    body=''
+    headers=''
+    method="GET">
+  </cells-generic-dp>
+
+    </template>
+
+    
+    <script>
+      class PokedeskDataManager extends Polymer.Element {
+  
+        static get is() {
+          return 'pokedesk-data-manager';
+        }
+  
+        // Declare properties for the element's public API
+        static get properties() {
+          return {
+            host: {type: String,},
+            path: {type: String},
+            headers: {type: Object},
+            body: {type: Object},
+            method: {type: String,},
+          };
+        }
+
+        _emit(name, value){
+          this.dispatchEvent(new CustomEvent(name, {
+            bubbles: true,
+            composed: true,
+            detail: {
+              data: value
+            }
+          }));
+        }
+
+        getData(){
+          this.$.myDataProvider.addEventListener('request-success', function(e) {
+            console.log(e.detail)
+            this._emit('success', e);
+          });
+          this.$.myDataProvider.addEventListener('request-error', function(e) {
+            console.log('error')
+            this._emit('error', e);
+          });
+          this.$.myDataProvider.generateRequest();
+        }
+
+        willBeActive(active) {
+          if (active) {
+            this.getData();
+          } else {
+            'this.reset();'
+          }
+        }
+      }
+  
+      customElements.define(PokedeskDataManager.is, PokedeskDataManager);
+    </script>
+  </dom-module>
+  

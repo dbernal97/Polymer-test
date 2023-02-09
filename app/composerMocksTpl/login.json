@@ -10,13 +10,13 @@
     {
       "zone": "app__header",
       "type": "UI",
-      "familyPath": "../elements/another-greeting",
-      "tag": "another-greeting",
+      "familyPath": "../elements/pokedesk-header",
+      "tag": "pokedesk-header-page",
       "properties": {
         "cellsConnections": {
           "in": {
             "greeting-channel": {
-              "bind": "another-greeting"
+              "bind": "pokedesk-header-page"
             }
           }
         }
@@ -25,14 +25,21 @@
     {
       "zone": "app__main",
       "type": "UI",
-      "familyPath": "../elements/my-greeting",
-      "tag": "my-greeting",
+      "familyPath": "../elements/pokedesk-main",
+      "tag": "pokedesk-main-page",
       "properties": {
         "cellsConnections": {
-          "in": {},
+          "in": {
+            "prueba_channel":{
+              "bind": "testeo"
+            }
+          },
           "out": {
-            "greeting-channel": {
-              "bind": "greeting-changed"
+            "prueba_channel": {
+              "bind": "prueba-channel",
+              "link":{
+                "page": "another"
+              }
             }
           }
         }
@@ -41,42 +48,40 @@
     {
       "zone": "app__main",
       "type": "UI",
-      "familyPath": "../elements/link-example",
-      "tag": "link-example",
+      "familyPath": "../elements/pokedesk-home",
+      "tag": "pokedesk-home-page",
       "properties": {
         "cellsConnections": {
-          "in": {},
-          "out": {
-            "param-channel": {
-              "bind": "param-url-event",
-              "link": {
-                "page": "another",
-                "params": {
-                  "idToSend": "idForUseInAnotherPage"
-                }
-              }
-            },
-            "router-channel": {
-              "bind": "router-event",
-              "link": {
-                "page": "routerExample",
-                "params": {
-                  "prettyUrlToSend": "queryStringToPrettyUrl",
-                  "queryString": "queryStringForUseInRouterPage",
-                  "otherQueryString": "otherQueryStringForUseInRouterPage"
-                }
-              }
+          "in": {
+            "dm-pokemons-channel":{
+              "bind": "propertyList"
             }
+          },
+          "out": {
           }
         }
       }
     },
     {
       "zone": "app__main",
-      "type": "CC",
-      "familyPath": "../elements/example-cross-component",
-      "tag": "example-cross-component",
-      "properties": {}
+      "type": "DM",
+      "familyPath": "../elements/pokedesk-data-manager",
+      "tag": "pokedesk-data-manager",
+      "properties": {
+        "cellsConnections": {
+          "in": {
+            "__bridge_page_login": {
+              "bind": "willBeActive"
+            }
+          },
+          "out": {
+            "dm-pokemons-channel": {
+              "bind": "success"
+            }
+          }
+        }
+      }
     }
+
   ]
 }

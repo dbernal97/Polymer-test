@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "dependencies": {
     "cells-template-paper-drawer-panel": "^11.0.0",
-    "web-component-tester":"6.6.0-pre.5"
+    "web-component-tester": "6.6.0-pre.5",
+    "cells-component-app-header": "^12.0.6",
+    "cells-avatar-item": "^15.1.0",
+    "cells-business-contact-card": "^12.0.4",
+    "cells-generic-dp": "^16.0.0",
+    "cells-ajax": "^13.0.0",
+    "cells-product-item-list": "^13.5.0",
+    "cells-st-link": "^12.16.7"
   },
   "resolutions": {
     "polymer": "^2.0.0"

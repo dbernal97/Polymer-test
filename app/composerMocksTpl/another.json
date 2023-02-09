@@ -52,6 +52,11 @@
       "tag": "example-data-manager",
       "properties": {
         "cellsConnections": {
+          "in": {
+            "__bridge_page_dashboard": {
+              "bind": "willBeActive"
+            }
+          },
           "out": {
             "dm-example-channel": {
               "bind": "users-changed"

@@ -5,6 +5,7 @@
     "cells-app"
   ],
   "dependencies": {
+    "@bbva-web-components/bbva-core-generic-dp": "^2.1.4",
     "@cells/cells-bridge": "^3.8.0",
     "cells-app-template": "^3.1.0"
   }

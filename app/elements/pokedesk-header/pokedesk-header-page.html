@@ -1,0 +1,38 @@
+<link rel="import" href="../../../components/cells-component-app-header/cells-component-app-header.html">
+
+<dom-module id="pokedesk-header-page">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color: #fff;
+      }
+
+    </style>
+    <cells-component-app-header text="{{title}}"></cells-component-app-header>
+
+  </template>
+
+  <script>
+    class PokedeskHeaderPage extends Polymer.Element {
+
+      static get is() {
+        return 'pokedesk-header-page';
+      }
+
+      // Declare properties for the element's public API
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: "Prueba Polymer - Daniel Bernal"
+          }
+        };
+      }
+    }
+
+    customElements.define(PokedeskHeaderPage.is, PokedeskHeaderPage);
+  </script>
+
+</dom-module>
