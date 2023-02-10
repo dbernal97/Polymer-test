@@ -11,8 +11,8 @@
 
   <cells-generic-dp
     id="myDataProvider"
-    host="https://pokeapi.co/api/v2/pokemon/"
-    path=""
+    host="https://pokeapi.co/api/v2"
+    path="{{path}}"
     params=''
     body=''
     headers=''
@@ -33,7 +33,7 @@
         static get properties() {
           return {
             host: {type: String,},
-            path: {type: String},
+            path: {type: String, value:"pokemon"},
             headers: {type: Object},
             body: {type: Object},
             method: {type: String,},

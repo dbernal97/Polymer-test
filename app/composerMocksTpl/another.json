@@ -15,8 +15,8 @@
       "properties": {
         "cellsConnections": {
           "in": {
-            "dm-example-channel": {
-              "bind": "propertyUser"
+            "pokemon_selected": {
+              "bind": "testeo"
             }
           },
           "out": {

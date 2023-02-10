@@ -1,0 +1,82 @@
+<link rel="import" href="../../../components/cells-component-app-header/cells-component-app-header.html">
+<link rel="import" href="../../elements/pokedesk-data-manager/pokedesk-data-manager.html">
+<link rel="import" href="../../../components/cells-st-link/cells-st-link.html">
+<link rel="import" href="../../../components/cells-st-button/cells-st-button.html">
+
+
+
+<dom-module id="pokemon-initial">
+
+    <template>
+      <style>
+        :host {
+          display: block;
+          background-color: #fff;
+          text-align: center;
+        }
+
+        table{
+          border: 2px solid;
+          width: 50%;
+          margin: 20px 25%;
+        }
+
+        td{
+          padding: 10px;
+          width: 100%;
+          border-bottom: 2px solid;
+          text-align: left;
+        }
+
+        cells-st-link{
+          font-size: 20px;
+          font-weight: bold;
+          color: rgb(36, 36, 36);
+        }
+  
+
+      </style>
+
+    <table>
+        <tr>
+            <td>{{name}}</td>
+            <td><cells-st-link>
+                <a on-click="sendData">Info</a>
+            </cells-st-link>
+            </td>
+        </tr> 
+    </table>
+        
+    </template>
+  
+    <script>
+      class PokemonInitial extends Polymer.Element {
+  
+        static get is() {
+          return 'pokemon-initial';
+        }
+  
+        // Declare properties for the element's public API
+        static get properties() {
+          return {
+            name: {type:String, value:'Default'},
+            data: {type:Object, value:{}},
+          }
+        }
+
+        sendData() {
+            this.dispatchEvent(new CustomEvent('pokemon-selected', {
+                bubbles: true,
+                composed: true,
+                detail: this.data,
+                
+            }));
+        }
+
+      }
+      
+  
+      customElements.define(PokemonInitial.is, PokemonInitial);
+    </script>
+  
+  </dom-module>

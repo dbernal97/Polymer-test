@@ -2,6 +2,7 @@
 <link rel="import" href="../../elements/pokedesk-data-manager/pokedesk-data-manager.html">
 <link rel="import" href="../../../components/cells-st-link/cells-st-link.html">
 <link rel="import" href="../../../components/cells-st-button/cells-st-button.html">
+<link rel="import" href="../pokemon-initial/pokemon-initial.html">
 
 
 
@@ -12,6 +13,7 @@
         :host {
           display: block;
           background-color: #fff;
+          text-align: center;
         }
   
         h1, p{
@@ -24,20 +26,24 @@
         }
 
         .main-list{
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          text-align:center;
         }
 
-  
-      </style>
-        <div class="main-list">
-          <cells-st-button>
-            <button on-click="createArray">Listar Pokemones</button>
-          </cells-st-button>
+        .list{
+          margin: 50px;
+          height: 250px;
+          width: 200px;
+          background-color: rgb(238, 238, 238);
+        }
 
-          <template is="dom-repeat" items="[[propertyArray]]" as="item">
-            <h2>[[item]]</h2>
+      </style>
+
+        <cells-st-button>
+          <button on-click="createArray">Listar Pokemones</button>
+        </cells-st-button>
+        <div class="main-list">
+          <template is="dom-repeat" items="[[propertyArray]]" as="pokemon">
+            <pokemon-initial name="{{pokemon.name}}" data="{{pokemon.url}}"></pokemon-initial>
           </template>
         </div>
         
@@ -54,23 +60,22 @@
         static get properties() {
           return {
             propertyList: {type:Object},
-            propertyArray: {type:Array, value:function(){return[]}},
+            propertyArray: {type:Array,},
           }
-
         }
-
 
         createArray(){
           let pokemons = this.propertyList.detail.results;
           let temp = [];
           for (let i = 0; i < pokemons.length; i++) {
-            let current = pokemons[i].name;
+            let current = pokemons[i];
             temp.push(current);
           }
 
           this.propertyArray = temp;
         }
       }
+      
   
       customElements.define(PokedeskHomePage.is, PokedeskHomePage);
     </script>

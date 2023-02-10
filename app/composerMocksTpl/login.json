@@ -58,6 +58,12 @@
             }
           },
           "out": {
+            "pokemon_selected":{
+              "bind": "pokemon-selected",
+              "link":{
+                "page":"another"
+              }
+            }
           }
         }
       }
